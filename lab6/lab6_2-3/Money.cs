@@ -105,14 +105,21 @@ namespace lab6_23
         public static Money operator --(Money money)
         {
             Money ResCash = new Money(money);
-
-            if (ResCash.Kopeks == 0)
+            if (ResCash.Rubles != 0 || ResCash.Kopeks != 0)
             {
-                ResCash.Rubles -= 1;
-                ResCash.Kopeks = 99;
+                if (ResCash.Kopeks == 0)
+                {
+                    ResCash.Rubles -= 1;
+                    ResCash.Kopeks = 99;
+                }
+                else
+                    ResCash.Kopeks--;
             }
             else
-                ResCash.Kopeks--;
+            {
+                ResCash.Rubles = 0;
+                ResCash.Kopeks = 0;
+            }
 
             return ResCash;
         }
@@ -142,7 +149,7 @@ namespace lab6_23
                 Rubles = 0;
                 Kopeks = 0;
             }
-                return new Money(Rubles, Kopeks);
+            return new Money(Rubles, Kopeks);
         }
 
         public static Money operator -(uint num, Money m)
@@ -198,7 +205,7 @@ namespace lab6_23
 
         public override string ToString()
         {
-            return $"\nΠσαλει: {Rubles}\nΚξοεεκ: {Kopeks}";
+            return $"\nΓΓ³Γ΅Γ«Γ¥Γ©: {Rubles}\nΓΓ®Γ―Γ¥Γ¥Γª: {Kopeks}";
         }
     }
 }
